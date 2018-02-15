@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Lecture de fichiers</title>
+		<style>
+			img {
+				max-height: 75px;
+				margin: 10px;
+			}
+			
+			#conteneur {
+				min-height: 100px;
+				width: 500px;
+				background: silver;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="conteneur" ondragenter="return false;" ondragover="return false;" ondrop="deposer(event);"></div>
+		<input type="file" onchange="lire(this.files);" multiple="multiple">
+		<div id="infos">
+		</div>
+		<script>
+			function lire(fichiers) {
+				function lecture(){
+					if(fichier.type=="image/jpeg"){
+						lecteur.readAsDataURL(fichier);
+						lecteur.onload = function(e) {
+							var img=document.createElement("img");
+							img.setAttribute("alt", fichier.name);
+							img.setAttribute("src", e.target.result);
+							document.getElementById("conteneur").appendChild(img);
+							img.addEventListener("click", efface);
+						};
+					}else{
+						lecteur.readAsText(fichier);
+						
+						lecteur.onload = function(e){
+							var text=document.createElement("p");
+							text.textContent=e.target.result;
+							document.getElementById("conteneur").appendChild(text);
+							text.setAttribute("contenteditable", true);
+							//text.addEventListener("click", efface);
+						}
+					}
+					boiteInfo(fichier);
+				}
+				
+				var lecteur = new FileReader();
+				for(let i=0; i<fichiers.length; i++){
+				//alert(i)
+					
+					var fichier=fichiers[i];
+
+					return lecture;
+				}
+				
+				
+			}
+
+			function deposer(e) {
+				e.preventDefault();
+				lire(e.dataTransfer.files);
+			}
+			
+		
+			function boiteInfo(fichier){
+				var infos=document.createElement("p");
+				infos.textContent="Nom : "+fichier.name+" | type : "+fichier.type+" | size : "+fichier.size;
+				
+				document.getElementById("infos").appendChild(infos);
+			}
+			function efface(e){
+				document.getElementById("conteneur").removeChild(e.target);
+			}
+		</script>
+	</body>
+</html>

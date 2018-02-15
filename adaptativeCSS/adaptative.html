@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Mise en page adaptative</title>
+	<style type="text/css">
+		header, footer, aside, section {
+			display: block;
+		}
+
+		h1 {
+			text-align: center;
+		}
+
+		nav {
+			min-height: 40px;
+			background: moccasin;
+			text-align: center;
+		}
+		nav ul {
+			padding: 0;
+			list-style-type: none;
+		}
+		nav ul li {
+			display: inline-block;
+			line-height: 40px;
+			padding: 0 5px 0 5px;
+		}
+
+		#contenu {
+			display: table;
+			margin-top: 20px;
+		}
+		#edito {
+			display: table-cell;
+			padding-right: 22px;
+		}
+
+		article div {
+			column-count: 2;
+			column-gap: 22px;
+		  /*-moz-column-count: 2;
+			-moz-column-gap: 22px;
+			-webkit-column-count: 2;
+			-webkit-column-gap: 22px;*/
+		}
+
+		p {
+			text-align: justify;
+		}
+		aside {
+			display: table-cell;
+			width: 170px;
+			background: #f3f3f3;
+			padding: 5px 0 0 5px;
+		}
+
+		aside section {
+			background: #e0e0e0;
+			margin: 20px;
+			padding: 20px;
+			text-align: center;
+		}
+
+		aside ul {
+			list-style-type: none;
+			line-height: 30px;
+			padding: 0;
+		}
+
+		footer {
+			background: #ccc;
+			margin-top: 20px;
+			padding: 10px;
+			text-align: center;
+		}
+
+		img {
+			width: 15%;
+			max-width: 140px;
+			min-width: 70px;
+			height: auto;
+			margin-right: 5px;
+			vertical-align: middle;
+		}
+		@media screen and (min-width:800px){
+			article div{
+				column-count:3;
+			}
+		}
+		@media screen and (max-width:600px){
+			nav ul li{
+				display:inherit;
+			}
+			article div{
+				column-count:1;
+			}
+			#contenu aside{
+				display:table-row;
+			}
+		}
+		@media screen and (max-width:480px){
+			img{display:none;}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1><img alt="" src="http://www.w3.org/html/logo/badge/html5-badge-h-css3.png">Page adaptative</h1>
+	</header>
+	<nav>
+		<ul>
+			<li>
+				<a href="#">Lien 1</a>
+			</li>
+			<li>
+				<a href="#">Lien 2</a>
+			</li>
+			<li>
+				<a href="#">Lien 3</a>
+			</li>
+			<li>
+				<a href="#">Lien 4</a>
+			</li>
+		</ul>
+	</nav>
+	<div id="contenu">
+		<div id="edito">
+			<header>
+				<h2>Introduction</h2>
+			</header>
+			<section>
+				<article>
+					<div>
+						<p contenteditable="true">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+						</p>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+						</p>
+					</div>
+
+				</article>
+			</section>
+
+		</div>
+
+		<aside>
+			<section>
+				<ul>
+					<li>
+						<a href="#">Lien 1</a>
+					</li>
+					<li>
+						<a href="#">Lien 2</a>
+					</li>
+					<li>
+						<a href="#">Lien 3</a>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<ul>
+					<li>
+						<a href="#">Lien 1</a>
+					</li>
+					<li>
+						<a href="#">Lien 2</a>
+					</li>
+				</ul>
+			</section>
+		</aside>
+	</div>
+
+	<footer>
+		<section>
+			Lorem ipsum
+		</section>
+	</footer>
+</body>
+</html>

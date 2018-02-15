@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Géoloc</title>
+	</head>
+	<body>
+	    <h1>Géoloc HTML5</h1>
+		<div id="msg"></div>
+		<div id="plan"></div>
+		<script>
+			var msg=document.getElementById("msg");
+			
+			function affichePosition(p){
+				var date=new Date(p.timestamp);
+				var lat=p.coords.latitude;
+				var lng=p.coords.longitude;
+				msg.innerHTML="latitude: "+p.coords.latitude+", longitude:"+p.coords.longitude+". Accuracy: "+p.coords.accuracy+". Date: "+p.timestamp;
+				var urlAdresse = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng;
+				var urlCarte = "http://maps.googleapis.com/maps/api/staticmap?zoom=17&size=500x400&center=" + lat + "," + lng;
+				
+				
+				requete = new XMLHttpRequest();
+				requete.open("GET", urlAdresse);
+				requete.onload = function(e) {
+					alert(this.response);
+					var data = JSON.parse(this.response);
+					//console.log(data);
+					var adresse = data.results[0].formatted_address;	
+					msg.innerHTML=adresse;
+				}
+				requete.send();
+				var plan=document.createElement("img");
+				plan.setAttribute("src", urlCarte);
+				document.getElementById("plan").appendChild(plan);
+				
+				
+			}
+			function afficheErreur(e){
+				msg.innerHTML=e.message;
+			}
+			if(geo=navigator.geolocation){
+				geo.getCurrentPosition(affichePosition, afficheErreur);
+			}else{
+				msg.innerHTML="Geolocalisation not supported";
+			}
+				
+				//date = new Date(p.timestamp);
+				//urlCarte = "http://maps.googleapis.com/maps/api/staticmap?zoom=17&size=500x400&center=" + lat + "," + lng;
+				//urlAdresse = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng;
+				//date.toLocaleString();
+				
+				//requete = new XMLHttpRequest();
+				//requete.open("GET", urlAdresse);
+				//requete.onload = function(e) {
+					//alert(this.response);
+					//data = JSON.parse(/* ... */);
+					//adresse = ;	
+				//}
+				//requete.send();
+			
+		</script>
+	</body>
+</html>

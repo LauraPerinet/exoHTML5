@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Stockage</title>
+	</head>
+	<body>
+		<p>
+			var1 en mémoire : <span id="span1"></span>
+		</p>
+		<input id="input1" type="text" value="">
+		<button onclick="sessionStorage.setItem('var1', $('input1').value); $('span1').innerHTML = sessionStorage.getItem('var1');">
+			Modifier var1
+		</button>
+		<p>
+			var2 en mémoire : <span id="span2"></span>
+		</p>
+		<input id="input2" type="text" value="">
+		<button onclick="localStorage.setItem('var2', $('input2').value); $('span2').innerHTML = localStorage.getItem('var2');">
+			Modifier var1
+		</button>
+
+		<script>
+			function $(id) {
+				return document.getElementById(id);
+			}
+
+
+			$("span1").innerHTML = sessionStorage.getItem("var1");
+			$("span2").innerHTML = localStorage.getItem("var2");
+		</script>
+	</body>
+</html>

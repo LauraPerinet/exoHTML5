@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vidéo</title>
+		<style>
+			body {
+				font: small Arial;
+			}
+
+			#commandes a {
+				border: 3px solid #ccc;
+				padding: 5px;
+				height: 15px;
+				text-decoration: none;
+				text-align: center;
+				display: inline-block;
+				width: 70px;
+				color: black;
+				vertical-align: middle;
+			}
+
+			#commandes a:hover {
+				background: #ccc;
+				color: #fff;
+			}
+
+			#temps {
+				display: inline-block;
+				padding: 5px;
+				height: 15px;
+				width: 50px;
+				border: 1px solid #ccc;
+				vertical-align: middle;
+				text-align: center;
+			}
+
+			#barre {
+				border: 1px solid #ccc;
+				width: 400px;
+				height: 25px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			#barre div {
+				background: #ccc;
+				height: 100%;
+				width: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<video  src="test.ogg" poster="test.jpg" width="640" style="border:5px solid #ccc;"></video>
+		<div id="commandes">
+			<a id="lienPlayPause" href="javascript:playPause();">Play</a>
+			<a id="lienStop" href="javascript:stop();">Stop</a>
+			<span id="temps"></span>
+			<div id="barre">
+				<div></div>
+			</div>
+		</div>
+		<script>
+			var video = document.getElementsByTagName("video").item(0);
+			var lienPlayPause = document.getElementById("lienPlayPause");
+			var lienStop = document.getElementById("lienStop");
+			var temps=document.getElementById("temps");
+			var barreExt = document.getElementById("barre");
+			var barreInt = barreExt.getElementsByTagName("div").item(0);
+			var longueurBarreExt = barreExt.clientWidth;
+
+			
+			video.addEventListener("timeupdate", indiquerTemps);
+			video.addEventListener("ended", stop);
+
+			function playPause() {
+
+				if (video.paused) {
+					video.play();
+					lienPlayPause.innerHTML = "Pause";
+				} else {
+					video.pause();
+					lienPlayPause.innerHTML = "Play";
+				}
+			}
+
+			function stop() {
+				video.pause();
+				video.currentTime = 0;
+				temps.innerHTML=0;
+				lienPlayPause.innerHTML = "Play";
+			}
+
+			function indiquerTemps() {
+				var t = Math.round(video.currentTime);
+				temps.innerHTML=Math.round(video.duration-video.currentTime);
+				
+				var longueurBarreInt = t*100/video.duration;
+				barreInt.style.width=longueurBarreInt+"%";
+				
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Glisser-déposer</title>
+		<style>
+			.destination {
+				width: 150px;
+				height: 150px;
+				padding: 10px;
+				border: 1px solid #aaa;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			#source{
+	
+				border:1px solid #aaa;
+				display:flex;
+			}
+			.chiffre{
+				width:100px;
+				height:100px;
+				margin:10px;
+				vertical-align:30px;
+				text-align:center;
+				background-color:blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="source">
+			
+			<div class="chiffre" id="3" draggable></div>
+			<div class="chiffre" id="1" draggable></div>
+			<div class="chiffre" id="4" draggable></div>
+			<div class="chiffre" id="2" draggable></div>
+		</div>
+		<div class="destination"></div>
+		<div class="destination"></div>
+		<div class="destination"></div>
+		<div class="destination"></div>
+		<script>
+			//var element = document.getElementById("element");
+			//var destination = document.getElementById("destination");
+			var source = document.getElementById("source");
+			
+			var chiffres=document.getElementsByClassName("chiffre");
+			var destination=document.getElementsByClassName("destination");
+			init(chiffres, source, destination);
+			
+			function init(element, source, destination){
+				
+				var dragStart = function( e ){
+							//source.style.border="1px dotted #aaa"; 
+							console.log("drag"+e.target.id);
+							e.dataTransfer.setData("text", e.target.id);					
+						};
+				var dragEnd = function(e){
+							source.style.border="1px solid #aaa";
+						};
+				var dragOver = function(e){
+							e.preventDefault();
+						};
+				var drop = function(e){ 
+						e.preventDefault(); 
+						e.target.appendChild(document.getElementById(e.dataTransfer.getData("text"))); 
+						//source.style.border="1px solid #aaa";
+						/*
+						destination.removeEventListener("dragover", dragOver);
+						destination.removeEventListener("drop", drop);
+						element.removeEventListener("dragstart", dragStart);
+						element.removeEventListener("dragend", dragEnd);
+						
+						init(element, destination,source);*/
+					};
+					
+				for(let i=0; i<chiffres.length;i++){
+					chiffres[i].addEventListener("dragstart", dragStart);
+					chiffres[i].addEventListener("dragend", dragEnd);
+					destination[i].addEventListener("dragover", dragOver);
+					destination[i].addEventListener("drop", drop);
+				}
+				
+				
+				
+			}
+		</script>
+	</body>
+</html>
+
